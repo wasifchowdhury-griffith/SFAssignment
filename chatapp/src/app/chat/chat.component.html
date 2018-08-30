@@ -1,8 +1,23 @@
+<h2>
+  Welcome {{this.username}}
+</h2>
+
+<div>
+  <a routerLink="/create-user" routerLinkActive="active">Create a new user</a>
+</div>
+
+
 <div id="chat_history" style="height: 500px">
   <div *ngFor="let message of messages">
     {{message.text}}
   </div>
 </div>
 
+
+
 <input [(ngModel)]="message" type="text" placeholder="message" id="message" name="message" class="form-control">
 <button (click)="sendMessage(message)" class="btn btn-primary">Send</button>
+<br/>
+<div id="logout">
+  <button (click)="logout()" class="btn btn-primary">Logout</button>
+</div>

@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   public username:string;
+  public password:string;
+
 
   constructor(private router:Router, private form:FormsModule) { }
 
@@ -17,9 +19,13 @@ export class LoginComponent implements OnInit {
 
   loginUser(event){
     event.preventDefault();
-    if(typeof(Storage)!=='undefined'){
-      sessionStorage.setItem('username', this.username);
-      this.router.navigate(['/chat']);
+    if (this.username == "wasif" || this.username == "nowshin" && this.password == "123"){
+      if(typeof(Storage)!=='undefined'){
+        sessionStorage.setItem('username', this.username);
+        this.router.navigate(['/chat']);
+      }
+    } else {
+      alert('Username and password were incorrect');
     }
   }
 
