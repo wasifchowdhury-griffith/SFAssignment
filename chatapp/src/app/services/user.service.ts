@@ -8,6 +8,7 @@ export class UserService {
   public users: User[];
   private nextId: number;
   public currentUser;
+  public currentUserId;
 
   constructor() { 
     let users = this.getUsers();
@@ -21,7 +22,7 @@ export class UserService {
   }
 
   public getCurrentUser(){
-    console.log(this.currentUser);
+    console.log("Current user is: " + this.currentUser + " " + this.currentUserId);
     return this.currentUser;
   }
 
@@ -34,11 +35,13 @@ export class UserService {
     let usern = new User(this.nextId, user, email);
     let users = this.getUsers();
     users.push(usern);
-
+    this.currentUserId = this.nextId;
+    console.log("new users id is: " + this.currentUserId);
     this.setLocalStorageUsers(users);
     this.nextId++;
     this.currentUser = user;
-    console.log("Current user is");
+    
+    console.log("Current user is: " + this.currentUser);
   }
 
   public getUsers(): User[] {
@@ -51,10 +54,21 @@ export class UserService {
     console.log("current user has been set to: " + this.currentUser);
   }
 
+  public setCurrentUserId(userId){
+    this.currentUserId = userId;
+    console.log("current user id is set to: " + this.currentUserId);
+  }
+
+  public getUserId(){
+    console.log(this.currentUserId);
+    return this.currentUserId;
+  }
+
   public removeUsers(id: number): void {
     let users = this.getUsers();
     users = users.filter((user) => user.id != id);
     this.setLocalStorageUsers(users);
+    console.log("user has been removed");
   }
 
   private setLocalStorageUsers(users: User[]): void {

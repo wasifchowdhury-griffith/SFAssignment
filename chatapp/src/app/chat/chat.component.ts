@@ -11,6 +11,7 @@ import { User } from '../classes/user';
 })
 export class ChatComponent implements OnInit {
   user: string;
+  id: number;
   messages=[];
   currentUser: string;
   message;
@@ -26,7 +27,9 @@ export class ChatComponent implements OnInit {
       this.router.navigateByUrl('login');
     } else {
       this.user = this.userService.getCurrentUser();
+      this.id = this.userService.getUserId();
       console.log("session started for: " + this.user);
+      console.log("id is: " + this.id);
     }
     console.log(this.userService.getCurrentUser());
     this.connection = this.sockServer.getMessages().subscribe(message=>{
@@ -46,8 +49,9 @@ export class ChatComponent implements OnInit {
   }
 
   logout(){
-    localStorage.clear();
-    this.router.navigateByUrl('home');
+    console.log(this.userService.getUserId());
+    this.userService.removeUsers(this.userService.getUserId());
+    this.router.navigate(['/login']);
   }
 
 
