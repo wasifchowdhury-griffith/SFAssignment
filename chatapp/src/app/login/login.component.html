@@ -1,9 +1,18 @@
-<h1>
-  Enter your username and password
-</h1>
+<div id="login">
+  <h1>
+    Enter your username and password
+  </h1>
 
-<form (submit)="loginUser($event)">
-  <input [(ngModel)]="username" type="text" placeholder="Username" id="username" name="username" class="form-control">
-  <input [(ngModel)]="password" type="password" placeholder="Password"  id="password" name="password" class="form-control">
-  <button type="submit" class="btn btn-primary">Enter Chat</button>
-</form>
+  <form (submit)="loginUser($event)">
+    <input [(ngModel)]="user" type="text" placeholder="Username" id="user" name="user" class="form-control">
+    <br/>
+    <input [(ngModel)]="email" type="email" placeholder="Email"  id="email" name="email" class="form-control">
+    <br/>
+    <button type="submit" class="btn btn-primary">Enter Chat</button>
+  </form>
+
+  <button (click)="retrieveUsers()">Get users</button>
+  <div *ngFor="let user of userService.getUsers()">
+    <app-user-item [user]="user"></app-user-item>
+  </div>
+</div>

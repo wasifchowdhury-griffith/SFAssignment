@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from '../services/socket.service';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { User } from '../classes/user';
 
 @Component({
   selector: 'app-chat',
@@ -8,29 +10,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  username: string;
+  user: string;
   messages=[];
+  currentUser: string;
   message;
   connection;
 
-  constructor(private sockServer: SocketService, private router:Router) { }
+  constructor(private sockServer: SocketService, private router:Router, private userService: UserService) { }
 
   ngOnInit() {
-    if(!sessionStorage.getItem('username')){
-      console.log('Not valid login');
-      this.router.navigateByUrl('home');
+    if (!localStorage.getItem('users')){
+      console.log('not validated');
+      localStorage.clear();
+      alert("Not a valid user");
+      this.router.navigateByUrl('login');
     } else {
-      this.username = sessionStorage.getItem('username');
-      console.log("Chat session started for user: " + this.username);
-      this.connection = this.sockServer.getMessages().subscribe(message=>{
-        this.messages.push(message);
-        this.message = "";
-      });
+      this.user = this.userService.getCurrentUser();
+      console.log("session started for: " + this.user);
     }
+    console.log(this.userService.getCurrentUser());
+    this.connection = this.sockServer.getMessages().subscribe(message=>{
+      this.messages.push(message);
+      this.message = "";
+    });
   }
 
   sendMessage(){
-    this.sockServer.sendMessage('[' + this.username + ']:' + this.message);
+    this.sockServer.sendMessage('[' + this.user + ']:' + this.message);
   }
 
   ngOnDestroy(){
@@ -40,7 +46,7 @@ export class ChatComponent implements OnInit {
   }
 
   logout(){
-    sessionStorage.clear();
+    localStorage.clear();
     this.router.navigateByUrl('home');
   }
 

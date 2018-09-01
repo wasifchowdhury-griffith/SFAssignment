@@ -1,11 +1,18 @@
-<h1>
-  Create a new user
-</h1>
+<div id="createUser">
+  <h1>
+    Create a new user
+  </h1>
 
-<form (submit)="createUser()">
-  <input [(ngModel)]="username" type="text" placeholder="Username" id="username" name="username" class="form-control">
-  <input [(ngModel)]="email" type="email" placeholder="Email"  id="email" name="email" class="form-control">
-  <button type="submit" class="btn btn-primary">Create</button>
-</form>
-
-<button (click)="retrieveUsers()">Get users</button>
+  <form (submit)="createUser()">
+    <input [(ngModel)]="user" type="text" placeholder="Username" id="user" name="user" class="form-control">
+    <br/>
+    <input [(ngModel)]="email" type="email" placeholder="Email"  id="email" name="email" class="form-control">
+    <br/>
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+  <br/>
+  <button (click)="retrieveUsers()">Get users</button>
+  <div *ngFor="let user of userService.getUsers()">
+    <app-user-item [user]="user"></app-user-item>
+  </div>
+</div>

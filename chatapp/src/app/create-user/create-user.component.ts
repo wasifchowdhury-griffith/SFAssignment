@@ -8,8 +8,8 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./create-user.component.css']
 })
 export class CreateUserComponent implements OnInit {
-  public username:string;
-  public email:string;
+  private user:string;
+  private email:string;
 
   constructor(private router: Router, private userService: UserService) { }
 
@@ -17,7 +17,10 @@ export class CreateUserComponent implements OnInit {
   }
 
   createUser() {
-    this.userService.createUser(this.username, this.email);
+    console.log(this.user);
+    console.log(this.email);
+    this.userService.createUser(this.user, this.email);
+    this.router.navigate([('/login')]);
   }
 
   retrieveUsers() {
