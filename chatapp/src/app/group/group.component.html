@@ -1,0 +1,17 @@
+<div id="group_bar">
+  You are subscribed <br/>
+  to the following groups: <br/>
+  <div id="groups">
+    <div *ngFor="let group of groupService.getGroups()">
+      <div id="uGroup">{{group.name}}</div>
+    </div>
+  </div>
+  <div>
+    <button type="button" class="newGroup">
+        <a routerLink="/create-group" routerLinkActive="active">Create new group</a>
+    </button>
+  </div>
+</div>
+
+
+ 

@@ -1,0 +1,26 @@
+#group_bar {
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    width: 20%;
+    height: 100%;
+    color: white;
+    padding: 10px;
+    background-color: black;
+}
+
+.newGroup {
+    width: 65%;
+    text-align: center;
+}
+
+#groups {
+    font-weight: bold;
+    text-align: center;
+}
+
+#uGroup {
+    border: 1px solid blue;
+    margin: 10px;
+    padding: 2px;
+}

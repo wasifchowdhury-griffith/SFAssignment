@@ -34,15 +34,13 @@ export class LoginComponent implements OnInit {
     console.log(this.userService.getUsers());
   }
 
-
   loginUser(event) {
     event.preventDefault();
     
     console.log(this.users);
-
     console.log(this.user);
     if ((this.userExists(this.user) == true) && (this.emailExists(this.email) == true)){
-      this.router.navigate(['/chat']);
+      this.router.navigateByUrl('dashboard');
       this.userService.setCurrentUser(this.user);
       //this.userService.setCurrentUserId(this.id);
       console.log(this.currentUserId);
