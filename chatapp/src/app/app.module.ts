@@ -18,6 +18,7 @@ import { UserService } from './services/user.service';
 import { GroupService } from './services/group.service';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NchatComponent } from './nchat/nchat.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BnavbarComponent,
     DocumentationComponent,
     CreateGroupComponent,
-    DashboardComponent
+    DashboardComponent,
+    NchatComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { SocketService } from '../services/socket.service';
 import { User } from '../classes/user';
 
 @Component({
@@ -10,22 +11,33 @@ import { User } from '../classes/user';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private user: string;
-  private email: string;
+  public user: string;
+  public email: string;
   public currentUser: string;
   users = this.userService.getUsers();
   public currentUserId: string;
   public cUser;
+  connection;
 
-  constructor(private router:Router, private form:FormsModule, private userService:UserService) { }
+  constructor(private router:Router, 
+    private form:FormsModule, 
+    private userService:UserService,
+    private socketService: SocketService) { }
   
   ngOnInit() {
+    this.connection = this.socketService.getMessages().subscribe(message => {});
     console.log(this.users);
     if (this.userExists("admin")){
       console.log("admin already exists");
     } else {
       console.log("admin created");
       this.userService.createUser("admin", "admin@admin.com");
+    }
+  }
+
+  ngOnDestroy(){
+    if(this.connection){
+      this.connection.unsubscribe();
     }
   }
 
@@ -46,7 +58,6 @@ export class LoginComponent implements OnInit {
     if ((this.userExists(this.user) == true) && (this.emailExists(this.email) == true)){
       this.router.navigateByUrl('dashboard');
       this.userService.setCurrentUser(this.user);
-      //this.userService.setCurrentUserId(this.id);
       console.log(this.currentUserId);
     } else {
       alert('Failed to login');

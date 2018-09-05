@@ -15,6 +15,12 @@ export class GroupService {
     return localStorageItem == null ? [] : localStorageItem.groups;
   }
 
+  public getChatByID(id: number){
+    let localStorageItem = JSON.parse(localStorage.getItem('groups'));
+    let gName = localStorageItem.groups[id].name;
+    return gName;
+  }
+
   public createGroup(id, name): void{
 
     let nGroup = new Group(id, name);

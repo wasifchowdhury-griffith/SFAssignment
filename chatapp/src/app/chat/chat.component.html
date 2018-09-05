@@ -2,11 +2,11 @@
   <b>Welcome to </b>
   <div id="chat_history">
     <div *ngFor="let message of messages">
-      {{message.text}}
+      {{item.user}} : {{item.message}} {{message.text}}
     </div>
   </div>
 
-  <input [(ngModel)]="message" type="text" placeholder="message" id="message" name="message" class="form-control">
-  <button (click)="sendMessage(message)" class="btn btn-primary">Send</button>
+  <input [(ngModel)]="messageText" type="text" placeholder="message" id="message" name="message" class="form-control">
+  <button (click)="sendMessage()" class="btn btn-primary">Send</button>
   <br/>
 </div>

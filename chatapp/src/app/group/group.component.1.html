@@ -2,10 +2,13 @@
   You are subscribed <br/>
   to the following groups: <br/>
   <div id="groups">
-    <ul>
-      <li *ngFor="let group of groupService.getGroups(); 
-      let i=index; let c=count"><a routerLink="/nchat/{{i}}">{{group.name}}</a></li>
-    </ul>
+    <div id="dGroup" *ngFor="let group of groupService.getGroups(); let i=index; let c=count">
+      <div id="uGroup">
+        <button type="button" (click)="clickedGroup(i)">
+          {{group.name}}
+        </button>
+      </div>
+    </div>
   </div>
   <div>
     <button type="button" class="newGroup">

@@ -7,6 +7,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { DocumentationComponent } from './documentation/documentation.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NchatComponent } from './nchat/nchat.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:'documentation', component:DocumentationComponent},
   {path:'create-group', component:CreateGroupComponent},
   {path:'dashboard', component:DashboardComponent},
+  {path:'nchat/:id', component: NchatComponent},
 ];
 
 @NgModule({

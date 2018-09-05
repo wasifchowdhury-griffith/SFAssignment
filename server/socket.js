@@ -1,29 +1,24 @@
 module.exports = function(app, io){
     console.log("Server socket intialised");
 
-    var users ={};
-    var name = 'this';
-
-    io.sockets.on('connect', function(socket){
-        socket.on('room', function(room) {
-            socket.join(room);
-            console.log("you have joined" + room);
-        });
-    });
-
     io.on('connection', (socket)=>{
-        console.log('user connected');
-        socket.on('groupFixer', function(myGroup){
-            console.log(myGroup);
-            socket.join(myGroup);
+        console.log('new connection');
+
+        socket.on('join', function(data){
+            socket.join(data.group);
+            console.log(data.user + 'joined the group: ' + data.group);
+            socket.broadcast.to(data.group).emit('new user joined ', {user:data.user, message:'has joined this room'});
         });
 
-        socket.on('disconnect', function(){
-            console.log('user disconnected');
+        socket.on('leave', function(data){
+            console.log(data.user + 'left the group: ' + data.group);
+            socket.broadcast.to(data.group).emit('left group', {user:data.user, message:'has left this group'});
+            socket.leave(data.group);
         });
 
-        socket.on('add-message', (message)=>{
-            io.emit('message', {type:'message', text:message});
-        });
+        socket.on('message', function(data){
+            console.log(data);
+            io.in(data.group).emit('new message', {user:data.user, message:data.message});
+        })
     });
 }

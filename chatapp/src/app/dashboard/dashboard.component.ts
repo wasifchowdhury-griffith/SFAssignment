@@ -3,11 +3,13 @@ import { Router } from '@angular/router';
 import { GroupService } from '../services/group.service';
 import { UserService } from '../services/user.service';
 import { Group } from '../classes/group';
+import { ChatService } from '../services/chat.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  providers:[ChatService]
 })
 export class DashboardComponent implements OnInit {
   user: string;
@@ -15,7 +17,11 @@ export class DashboardComponent implements OnInit {
   groups: Group;
   currentUser: string;
 
-  constructor(private router: Router, private groupService: GroupService, private userService: UserService) { }
+  constructor(private router: Router, 
+    private groupService: GroupService, 
+    private userService: UserService, 
+    private chatService: ChatService
+  ) { }
 
   ngOnInit() {
     if (!localStorage.getItem('users')){
