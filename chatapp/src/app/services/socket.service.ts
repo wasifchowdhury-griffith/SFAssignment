@@ -11,6 +11,14 @@ export class SocketService {
 
   constructor() { }
 
+  connectRoom(groupName){
+    console.log(groupName);
+    this.socket.emit("groupFixer", groupName);
+    this.socket.on('connect', function(){
+      this.socket.emit('room', groupName);
+    });
+  }
+
   sendMessage(message){
     console.log('sendMessage()');
     this.socket.emit('add-message', message);

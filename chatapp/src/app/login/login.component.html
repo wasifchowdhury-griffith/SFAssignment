@@ -10,9 +10,13 @@
     <br/>
     <button type="submit" class="btn btn-primary">Enter Chat</button>
   </form>
-
+    <br/>
   <button (click)="retrieveUsers()">Get users</button>
   <div *ngFor="let user of userService.getUsers()">
     <app-user-item [user]="user"></app-user-item>
+  </div>
+    <br/>
+  <div>
+    <button (click)="register()" class="btn btn-primary">Register</button>
   </div>
 </div>

@@ -6,7 +6,7 @@ import { Group } from '../classes/group';
 })
 export class GroupService {
   public groups: Group[];
-  private nextId: number;
+  public nextId: number;
 
   constructor() { }
 
@@ -24,6 +24,10 @@ export class GroupService {
     console.log("Groups: " + groups);
     this.setLocalStorageGroups(groups);
     this.nextId++;
+  }
+
+  public setGroup(Group) {
+
   }
 
   public addToGroup(){

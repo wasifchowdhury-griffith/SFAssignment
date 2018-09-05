@@ -48,11 +48,4 @@ export class ChatComponent implements OnInit {
     }
   }
 
-  logout(){
-    console.log(this.userService.getUserId());
-    this.userService.removeUsers(this.userService.getUserId());
-    this.router.navigate(['/login']);
-  }
-
-
 }

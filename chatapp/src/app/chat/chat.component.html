@@ -1,32 +1,12 @@
 <div id="chat">
-  <h2>
-    You have successfully logged in, Welcome {{this.user}}
-    Your ID is: {{this.id}}
-  </h2>
-
-  <div>
-    <button type="button" class="btn btn-success">
-        <a routerLink="/create-user" routerLinkActive="active">Create a new user</a>
-    </button>
-  </div>
-
-  <div id="groupBar">
-    <app-group></app-group>
-  </div>
-
-
-  <div id="chat_history" style="height: 500px">
+  <b>Welcome to </b>
+  <div id="chat_history">
     <div *ngFor="let message of messages">
       {{message.text}}
     </div>
   </div>
 
-
-
   <input [(ngModel)]="message" type="text" placeholder="message" id="message" name="message" class="form-control">
   <button (click)="sendMessage(message)" class="btn btn-primary">Send</button>
   <br/>
-  <div id="logout">
-    <button (click)="logout()" class="btn btn-primary">Logout</button>
-  </div>
 </div>

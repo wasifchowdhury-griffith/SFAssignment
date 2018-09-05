@@ -17,7 +17,6 @@ import { DocumentationComponent } from './documentation/documentation.component'
 import { UserService } from './services/user.service';
 import { GroupService } from './services/group.service';
 import { CreateGroupComponent } from './create-group/create-group.component';
-import { GroupItemComponent } from './group-item/group-item.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
@@ -32,7 +31,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BnavbarComponent,
     DocumentationComponent,
     CreateGroupComponent,
-    GroupItemComponent,
     DashboardComponent
   ],
   imports: [

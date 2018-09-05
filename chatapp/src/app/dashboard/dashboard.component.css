@@ -1,0 +1,8 @@
+#logout {
+    position: fixed;
+    right: 0;
+}
+
+#title, #newUser {
+    text-align: center;
+}

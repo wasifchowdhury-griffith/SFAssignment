@@ -19,7 +19,7 @@ export class CreateGroupComponent implements OnInit {
   createGroup() {
     this.groupService.createGroup(this.id, this.name);
     this.id = this.id++;
-    this.router.navigate([('/chat')]);
+    this.router.navigate([('/dashboard')]);
   }
 
   retrieveGroups() {

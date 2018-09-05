@@ -29,6 +29,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  register(){
+    this.router.navigateByUrl('create-user');
+  }
+
   retrieveUsers() {
     this.userService.getUsers();
     console.log(this.userService.getUsers());

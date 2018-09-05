@@ -1,21 +1,20 @@
 <div id="dashboard">
+  <div id="title">
     <h2>
-      You have successfully logged in, Welcome {{this.user}}
-      Your ID is: {{this.id}}
+      You have successfully logged in <br/>
+       Welcome {{this.user}}
     </h2>
-  
-    <div>
-      <button type="button" class="btn btn-success">
-          <a routerLink="/create-user" routerLinkActive="active">Create a new user</a>
-      </button>
-    </div>
-    <div id="sgroupBar">
-      <app-group></app-group>
-    </div>
-    <div>
-        <br/>
-        <div id="logout">
-            <button (click)="logout()" class="btn btn-primary">Logout</button>
-        </div>
-    </div>
+  </div>
+  <div id="logout">
+    <button (click)="logout()" class="btn btn-primary">Logout</button>
+  </div>
+  <div id="newUser">
+    <button type="button" class="btn btn-success">
+      <a routerLink="/create-user" routerLinkActive="active">Create a new user</a>
+    </button>
+  </div>
+  <div id="sgroupBar">
+    <app-group></app-group>
+  </div>
+    <app-chat></app-chat>
 </div>
