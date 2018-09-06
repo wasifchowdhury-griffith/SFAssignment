@@ -2,7 +2,7 @@
 ## Wasif Chowdhury s2944951
 
 ### Git
-
+The assignment/git repo contains two folders, [chatapp](https://github.com/wchow3/SFAssignment/tree/master/chatapp) and [server](https://github.com/wchow3/SFAssignment/tree/master/server)
 ### Data Structures
 
 ### Rest API
