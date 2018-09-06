@@ -6,6 +6,10 @@
     text-align: center;
 }
 
+#homepage:hover {
+    background-color: #BCBABE;
+}
+
 #welcome, #welcome-msg, #div, a {
     background-color: #A1D6E2;
     color: #F1F1F2;

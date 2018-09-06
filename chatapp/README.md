@@ -22,6 +22,21 @@ Each commit has a comment for changes
 ### Data Structures
 
 ### Rest API
+Rest APIs were not used for this.
+Routes in the project were:
+- /home
+    route user arrives on default
+- /login
+    route user uses to login to chat
+- /dashboard
+    route user arrives at once logged in
+    able to create user or group from here
+- /create-user
+    route to a form that creates a user
+- /create-group
+    route to a form that creates a group
+- /nchat/(id)
+    route to a chat room with specified id
 
 
 ### Angular Architecture

@@ -22,8 +22,6 @@
     text-align: center;
 }
 
-
-.btns {
-    background-color: #003B46;
-    color: #F1F1F2;
+buttons:hover {
+    background-color: #A1D6E2;
 }
