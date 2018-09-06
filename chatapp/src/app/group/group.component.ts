@@ -27,6 +27,7 @@ export class GroupComponent implements OnInit {
     let n = this.groupService.getGroups();
   }
   
+  //function to join group with index
   join(i) {
     let f = this.groupService.getGroups();
     let gName = f[i].name
@@ -36,29 +37,34 @@ export class GroupComponent implements OnInit {
     console.log("you are joining: " + gName);
   }
 
+  //function to leave group with index
   leave(i){
     let f = this.groupService.getGroups();
     let gName = f[i].name;
     this.chatService.leaveGroup({user:this.user, group: gName});
   }
 
+  //function to set Index
   setIndex(index){
     return this.indexx = index;
   }
  
-
+  //function to retrieve groups
   retrieveGroups() {
     console.log('retrieving...')
     this.groupService.getGroups();
     console.log(this.groupService.getGroups());
   }
 
+  //function to see which group
   clickedGroup(groupID){
     let f = this.groupService.getGroups();
     let gName = f[groupID];
     this.joinGroup(gName.name);
   }
 
+
+  //join group by name
   joinGroup(groupName) {
     console.log("you have joined..." + groupName);
     this.sockServer.connectRoom(groupName); 

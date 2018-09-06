@@ -16,6 +16,7 @@ export class CreateUserComponent implements OnInit {
   ngOnInit() {
   }
 
+  //function to create new user, navigates to login
   createUser() {
     console.log(this.user);
     console.log(this.email);
@@ -23,9 +24,15 @@ export class CreateUserComponent implements OnInit {
     this.router.navigate([('/login')]);
   }
 
+  //function to retrieve users
   retrieveUsers() {
     this.userService.getUsers();
     console.log(this.userService.getUsers());
+  }
+
+  //function to go back
+  goBack(){
+    history.back();
   }
 
 }

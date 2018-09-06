@@ -21,16 +21,19 @@ export class UserService {
     }
   }
 
+  //gets current user
   public getCurrentUser(){
     console.log("Current user is: " + this.currentUser + " " + this.currentUserId);
     return this.currentUser;
   }
 
+  //retrieves username
   public getUsername() {
     console.log(localStorage.getItem('users'));
     return JSON.parse(localStorage.getItem('users')).user;
   }
 
+  //function to create new user
   public createUser(user, email ): void {
     let usern = new User(this.nextId, user, email);
     let users = this.getUsers();
@@ -44,26 +47,25 @@ export class UserService {
     console.log("Current user is: " + this.currentUser);
   }
 
+  //get users array
   public getUsers(): User[] {
     let localStorageItem = JSON.parse(localStorage.getItem('users'));
     return localStorageItem == null ? [] : localStorageItem.users;
   }
 
+  //sets current user
   public setCurrentUser(user){
     this.currentUser = user;
     console.log("current user has been set to: " + this.currentUser);
   }
 
-  public setCurrentUserId(userId){
-    this.currentUserId = userId;
-    console.log("current user id is set to: " + this.currentUserId);
-  }
-
+  //get current user by id
   public getUserId(){
     console.log(this.currentUserId);
     return this.currentUserId;
   }
 
+  //remove users, requires id
   public removeUsers(id: number): void {
     let users = this.getUsers();
     users = users.filter((user) => user.id != id);
@@ -71,6 +73,7 @@ export class UserService {
     console.log("user has been removed");
   }
 
+  //sets local storage of users, requires user
   private setLocalStorageUsers(users: User[]): void {
     localStorage.setItem('users', JSON.stringify({ users: users}));
   }

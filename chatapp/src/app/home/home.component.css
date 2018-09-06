@@ -1,5 +1,17 @@
-#welcome, #welcome-msg, #div {
-    background-color: black;
-    color: white;
+#homepage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
+}
+
+#welcome, #welcome-msg, #div, a {
+    background-color: #A1D6E2;
+    color: #F1F1F2;
+    text-align: center;
+}
+
+a:hover {
+    color: #1995AD;
 }

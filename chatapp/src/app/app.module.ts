@@ -7,10 +7,8 @@ import { SocketService } from './services/socket.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { ChatComponent } from './chat/chat.component';
 import { HomeComponent } from './home/home.component';
 import { CreateUserComponent } from './create-user/create-user.component';
-import { UserItemComponent } from './user-item/user-item.component';
 import { GroupComponent } from './group/group.component';
 import { BnavbarComponent } from './bnavbar/bnavbar.component';
 import { DocumentationComponent } from './documentation/documentation.component';
@@ -24,10 +22,8 @@ import { NchatComponent } from './nchat/nchat.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    ChatComponent,
     HomeComponent,
     CreateUserComponent,
-    UserItemComponent,
     GroupComponent,
     BnavbarComponent,
     DocumentationComponent,

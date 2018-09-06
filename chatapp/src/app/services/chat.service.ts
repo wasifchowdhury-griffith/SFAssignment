@@ -10,6 +10,7 @@ export class ChatService {
   constructor() { }
   private socket = io('http://localhost:3000');
 
+  //join group with user and group
   joinGroup(data){
     this.socket.emit('join', data);
   }
@@ -20,6 +21,7 @@ export class ChatService {
     return gr;
   }
 
+  // new user observable
   newUserJoined(){
     let observable = new Observable<{user: String, message:String}>(observer=>{
       this.socket.on('new user joined', (data)=>{
@@ -30,10 +32,12 @@ export class ChatService {
     return observable;
   }
 
+  //leave group, needs group id and user
   leaveGroup(data){
     this.socket.emit('leave', data);
   }
 
+  //broadcast when user leaves
   userLeftRoom(){
     let observable = new Observable<{user: String, message: String}>(observer=>{
     this.socket.on('left room', (data)=>{
@@ -44,10 +48,12 @@ export class ChatService {
   return observable;
   }
 
+  //send message to socket
   sendMessage(data){
     this.socket.emit('message', data);
   }
 
+  //recieve message from socket
   newMessageReceived(){
     let observable = new Observable<{user: String, message: String}>(observer=>{
       this.socket.on('new message', (data)=>{

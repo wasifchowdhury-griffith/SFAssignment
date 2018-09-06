@@ -1,22 +1,18 @@
 <div id="login">
   <h1>
-    Enter your username and password
+    Enter your username & email
   </h1>
-
-  <form (submit)="loginUser($event)">
+  <br/>
+  <form id="formS" (submit)="loginUser($event)">
     <input [(ngModel)]="user" type="text" placeholder="Username" id="user" name="user" class="form-control">
     <br/>
     <input [(ngModel)]="email" type="email" placeholder="Email"  id="email" name="email" class="form-control">
     <br/>
-    <button type="submit" class="btn btn-primary">Enter Chat</button>
+    <button type="submit" class="btns">Enter Chat</button>
   </form>
     <br/>
-  <button (click)="retrieveUsers()">Get users</button>
-  <div *ngFor="let user of userService.getUsers()">
-    <app-user-item [user]="user"></app-user-item>
-  </div>
-    <br/>
   <div>
-    <button (click)="register()" class="btn btn-primary">Register</button>
+    <button (click)="register()" class="btns">Register</button>
   </div>
+  <br/>
 </div>

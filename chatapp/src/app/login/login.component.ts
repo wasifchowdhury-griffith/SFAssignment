@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
     private userService:UserService,
     private socketService: SocketService) { }
   
+  //initialise creates admin if not existing, admin admin@admin.com
   ngOnInit() {
     this.connection = this.socketService.getMessages().subscribe(message => {});
     console.log(this.users);
@@ -35,21 +36,25 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  //ends connection with socket
   ngOnDestroy(){
     if(this.connection){
       this.connection.unsubscribe();
     }
   }
 
+  //navigate to create-user
   register(){
     this.router.navigateByUrl('create-user');
   }
 
+  //retrieve users
   retrieveUsers() {
     this.userService.getUsers();
     console.log(this.userService.getUsers());
   }
 
+  //login user
   loginUser(event) {
     event.preventDefault();
     
@@ -64,18 +69,21 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  //check if user exists
   public userExists(username){
     return this.users.some(function(el){
       return el.user == username;
     });
   }
 
+  //check if email exists
   public emailExists(email){
     return this.users.some(function(el){
       return el.email == email;
     });
   }
 
+  //get current user
   public getCurrentUser(){
     console.log(this.user);
   }

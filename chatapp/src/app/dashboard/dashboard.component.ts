@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
     private chatService: ChatService
   ) { }
 
+  //initialise login
   ngOnInit() {
     if (!localStorage.getItem('users')){
       console.log('not validated');
@@ -36,7 +37,13 @@ export class DashboardComponent implements OnInit {
       console.log("id is: " + this.userId);
     }
   }
+  
+  //function to go home
+  home(){
+    this.router.navigate(['/dashboard']);
+  }
 
+  //function to logout
   logout(){
     console.log(this.userService.getUserId());
     this.userService.removeUsers(this.userService.getUserId());

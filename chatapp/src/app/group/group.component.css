@@ -1,12 +1,8 @@
 #group_bar {
     overflow: hidden;
-    position: fixed;
-    left: 0;
-    width: 30%;
     height: 100%;
-    color: white;
+    color: #F1F1F2;
     padding: 10px;
-    background-color: black;
 }
 
 .newGroup {
@@ -17,10 +13,31 @@
 #groups {
     font-weight: bold;
     text-align: center;
+    color: #F1F1F2;
+}
+
+a {
+    color: #F1F1F2;
+}
+
+a:hover {
+    color: #1995AD;
 }
 
 #uGroup {
     border: 1px solid blue;
     margin: 10px;
     padding: 2px;
+}
+
+#createGB, #title {
+    text-align: center;
+}
+
+button {
+    background-color: #1995AD;
+}
+
+button:hover {
+    background-color: #F1F1F2;
 }

@@ -1,13 +1,37 @@
-#chat {
-    color: black;
+#nchat {
+    display: block;
+    background-color: #1995AD;
     text-align: center;
-    position: fixed;
-    right: 0;
     width: 70%;
     border: black solid 1px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 #chat_history {
+    color: #F1F1F2;
     height: 350px;
-    text-align: center;
+    text-align: left;
+    padding: 10px;
 }
+
+#title {
+    color: #F1F1F2;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+button {
+    display: block;
+    color: #F1F1F2;
+    background-color: #A1D6E2;
+}
+
+button:hover {
+    color: #A1D6E2;
+    background-color: #F1F1F2;
+}
+

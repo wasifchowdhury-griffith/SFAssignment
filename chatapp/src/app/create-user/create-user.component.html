@@ -8,11 +8,8 @@
     <br/>
     <input [(ngModel)]="email" type="email" placeholder="Email"  id="email" name="email" class="form-control">
     <br/>
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button id="submit" type="submit" class="btn btn-primary">Create</button>
   </form>
   <br/>
-  <button (click)="retrieveUsers()">Get users</button>
-  <div *ngFor="let user of userService.getUsers()">
-    <app-user-item [user]="user"></app-user-item>
-  </div>
+  <button (click)="goBack()" id="back" class="btn btn-primary">Back</button>
 </div>

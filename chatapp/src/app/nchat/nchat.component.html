@@ -1,12 +1,23 @@
-<div id="chat">
-    <b>Welcome to {{chatName}}</b>
-    <div id="chat_history">
-      <div *ngFor="let item of messageArray">
-        <strong>{{item.user}}</strong> : {{item.message}}
+<div id="nchat">
+  <div id="chat">
+      <p id="title">Welcome to {{chatName}}</p>
+      <div id="chat_history">
+        <div *ngFor="let item of messageArray">
+          <strong>{{item.user}}</strong> : {{item.message}}
+        </div>
       </div>
-    </div>
-  
-    <input [(ngModel)]="messageText" type="text" placeholder="message" id="message" name="message" class="form-control">
-    <button (click)="sendMessage()" class="btn btn-primary">Send</button>
-    <br/>
+    
+      <input [(ngModel)]="messageText" type="text" placeholder="message" id="message" name="message" class="form-control">
+      <button (click)="sendMessage()" class="btn btn-primary">Send</button>
+      <br/>
   </div>
+  <div id="btns">
+    <div id="leaveBtn">
+      <button (click)="leave()" class="btn btn-primary">Leave Group</button>
+    </div>
+    <div id="deleteBtn">
+        <button (click)="delete()" class="btn btn-primary">Delete Group</button>
+    </div>
+  </div>
+</div>
+

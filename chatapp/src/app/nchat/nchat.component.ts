@@ -28,26 +28,41 @@ export class NchatComponent implements OnInit {
     .subscribe(data=>this.messageArray.push(data));
    }
 
+   //retrieves group id, sets group name
   ngOnInit() {
     let id = +this.route.snapshot.paramMap.get('id');
     console.log(id);
     let f = this.getChatByID(id);
     this.chatName = f;
-    let u = this.getUser();
-    this.chatService.joinGroup({user: u, group: f})
+    this.user = this.getUser();
+    this.chatService.joinGroup({user: this.user, group: this.chatName})
+  }
+  
+  //function to leave group
+  leave(){
+    this.chatService.leaveGroup({user: this.user, group: this.chatName});
+    history.back();
   }
 
+  //function to delete group
+  delete(){
+    let id = +this.route.snapshot.paramMap.get('id');
+    this.groupService.deleteGroup(id);
+    history.back();
+  }
 
-  
+  //function to fetch user
   getUser(){
     this.user = this.userService.getCurrentUser();
     return this.user;
   }
 
+  //function to get group by id
   getChatByID(id: number){
     return this.groupService.getChatByID(id);
   }
 
+  //function to send message
   sendMessage(){
     console.log(this.user);
     let s = +this.route.snapshot.paramMap.get('id');

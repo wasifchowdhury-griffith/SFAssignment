@@ -5,16 +5,23 @@
        Welcome {{this.user}}
     </h2>
   </div>
-  <div id="logout">
-    <button (click)="logout()" class="btn btn-primary">Logout</button>
-  </div>
-  <div id="newUser">
-    <button type="button" class="btn btn-success">
-      <a routerLink="/create-user" routerLinkActive="active">Create a new user</a>
-    </button>
-  </div>
+  <br/>
+    <div id="nav">
+      <div id="home">
+        <button (click)="home()" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-home"></span> Home
+        </button>
+      </div>
+      <div id="logout">
+        <button (click)="logout()" class="btn btn btn-info btn-lg">Logout</button>
+      </div>
+      <div id="newUser">
+        <button type="button" class="btn btn-info btn-lg">
+          <a routerLink="/create-user">Create a new user</a>
+        </button>
+      </div>
+    </div>
   <div id="sgroupBar">
     <app-group></app-group>
   </div>
-    <app-chat></app-chat>
 </div>

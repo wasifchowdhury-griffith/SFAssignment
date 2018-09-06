@@ -3,7 +3,15 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    color: white;
+    color: #F1F1F2;
     padding: 10px;
-    background-color: black;
+    background-color: #1995AD;
+}
+
+a {
+    color: #A1D6E2;
+}
+
+a:hover {
+    color: #F1F1F2;
 }

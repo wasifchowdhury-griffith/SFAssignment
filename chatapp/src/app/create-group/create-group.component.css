@@ -1,0 +1,38 @@
+#createGroup {
+    background-color: #1995AD;
+    color: #C4DFE6;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 400px;
+    height: 300px;
+}
+
+.form-control {
+    font-size: 20px;
+    padding: 10px;
+    margin: 10px;
+    background-color: #F1F1F2;
+    color: #003B46;
+    width: 92.5%;
+    text-align: center;
+}
+
+#text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+button {
+    background-color: #1995AD;
+}
+
+button:hover {
+    background-color: #F1F1F2;
+    color: #1995AD;
+}

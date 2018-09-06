@@ -10,7 +10,8 @@ export class SocketService {
   private socket;
 
   constructor() { }
-
+  
+  //connect to group
   connectRoom(groupName){
     console.log(groupName);
     this.socket.emit("groupFixer", groupName);
@@ -19,11 +20,13 @@ export class SocketService {
     });
   }
 
+  //send message
   sendMessage(message){
     console.log('sendMessage()');
     this.socket.emit('add-message', message);
   }
 
+  //get messages
   getMessages(){
     console.log('getMessages()');
     this.socket = io(this.url);

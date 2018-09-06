@@ -15,16 +15,22 @@ export class CreateGroupComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  //function that creates new group, navigates to dashboard
   createGroup() {
     this.groupService.createGroup(this.id, this.name);
     this.id = this.id++;
     this.router.navigate([('/dashboard')]);
   }
 
+  //function to retrieve groups
   retrieveGroups() {
     this.groupService.getGroups();
     console.log(this.groupService.getGroups());
+  }
+  
+  //function to go back to dashboard
+  goBack(){
+    history.back();
   }
 
 }
