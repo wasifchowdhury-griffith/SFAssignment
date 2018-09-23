@@ -4,9 +4,9 @@
   </h1>
   <br/>
   <form id="formS" (submit)="loginUser($event)">
-    <input [(ngModel)]="user" type="text" placeholder="Username" id="user" name="user" class="form-control">
+    <input [(ngModel)]="username" type="text" placeholder="Username" id="user" name="user" class="form-control">
     <br/>
-    <input [(ngModel)]="email" type="email" placeholder="Email"  id="email" name="email" class="form-control">
+    <input [(ngModel)]="password" type="password" placeholder="Password"  id="password" name="password" class="form-control">
     <br/>
     <button type="submit" class="btn btn-info btn-lg">Enter Chat</button>
   </form>

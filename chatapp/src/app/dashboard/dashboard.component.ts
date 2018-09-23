@@ -1,53 +1,111 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GroupService } from '../services/group.service';
-import { UserService } from '../services/user.service';
-import { Group } from '../classes/group';
-import { ChatService } from '../services/chat.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  providers:[ChatService]
 })
 export class DashboardComponent implements OnInit {
-  user: string;
-  userId: number;
-  groups: Group;
-  currentUser: string;
+  public user;
+  public selectedGroup;
+  public selectedChannel;
+  public groups = [];
+  public channels =[];
+  public newGroupName:String;
 
   constructor(private router: Router, 
-    private groupService: GroupService, 
-    private userService: UserService, 
-    private chatService: ChatService
+    private groupService: GroupService
   ) { }
 
-  //initialise login
+
   ngOnInit() {
-    if (!localStorage.getItem('users')){
-      console.log('not validated');
-      localStorage.clear();
-      alert("Not a valid user");
-      this.router.navigateByUrl('login');
+    if (sessionStorage.getItem('user') === null){
+      this.router.navigate(['/login']);
     } else {
-      this.user = this.userService.getCurrentUser();
-      this.userId = this.userService.getUserId();
-      console.log("session started for: " + this.user);
-      console.log("id is: " + this.userId);
+      let user = JSON.parse(sessionStorage.getItem('user'));
+      this.user = user;
+      console.log(this.user);
+      this.groups = user.groups;
+      if (this.groups.length > 0){
+        this.openGroup(this.groups[0].name);
+        if (this.groups[0].channels > 0){
+          this.channelChangedHandler(this.groups[0].channels[0].name);
+        }
+      }
     }
   }
-  
-  //function to go home
-  home(){
-    this.router.navigate(['/dashboard']);
+
+  createGroup(event){
+    event.preventDefault();
+    let data = {'newGroupName' : this.newGroupName};
+    this.groupService.createGroup(data).subscribe(
+      data => {
+        console.log(data);
+        this.getGroups();
+      },
+      error => {
+        console.error(error);
+      }
+    )
   }
 
-  //function to logout
+  deleteGroup(groupName){
+    this.groupService.deleteGroup(groupName, this.user.username).subscribe(
+      data => {
+        this.getGroups();
+      }, error => {
+        console.error(error);
+      }
+    )
+  }
+
+  getGroups(){
+    let data = {
+      'username' : JSON.parse(sessionStorage.getItem('user')).username
+    }
+    this.groupService.getGroups(data).subscribe(
+      d => {
+        console.log('getGroups()');
+        console.log(d);
+        this.groups = d['groups'];
+      },
+      error => {
+        console.error(error);
+      }
+    )
+  }
+
   logout(){
-    console.log(this.userService.getUserId());
-    this.userService.removeUsers(this.userService.getUserId());
+    sessionStorage.clear();
     this.router.navigate(['/login']);
+  }
+
+  openGroup(name){
+    console.log(name);
+    for (let i=0; i<this.groups.length; i++){
+      if(this.groups[i].name == name){
+        this.selectedGroup = this.groups[i];
+      }
+    }
+    this.channels = this.selectedGroup.channels;
+  }
+
+  channelChangedHandler(name){
+    let found:boolean = false;
+    for (let i=0; i<this.channels.length; i++){
+      if(this.channels[i].name == name){
+        this.selectedChannel = this.channels[i];
+        found = true;
+      }
+    }
+    return found;
+  }
+
+  getChannels(groupName){
+    let channels = [];
+    return channels;
   }
 
 }

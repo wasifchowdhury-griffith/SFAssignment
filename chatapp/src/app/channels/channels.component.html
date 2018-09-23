@@ -1,0 +1,4 @@
+<div>
+  <p *ngIf="channels.length == 0" style="width: 100%; text-align:center">No Channels Available</p>
+  <button *ngFor="let channel of channels" (click)="changeChannel(channel.name)" type="button" class="btn btn-outline-primary">{{ channel.name }}</button>
+</div>
