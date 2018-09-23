@@ -39,7 +39,7 @@ module.exports = function(){
             for (let i=0; i<data.groups.length; i++){
                 let members = data.groups[i].members;
                 for (let j=0; j<members.length; j++){
-                    if(username == memebers[j]){
+                    if(username == members[j]){
                         data.groups[i].role = 0;
                         groups.push(data.groups[i]);
                     }
@@ -63,7 +63,7 @@ module.exports = function(){
                 } else {
                     let channel = data.channels[i];
                     for (let j=0; j<channel.members.length; j++){
-                        if (username == channel.memebers[j]){
+                        if (username == channel.members[j]){
                             channels.push(channel);
                         }
                     }
