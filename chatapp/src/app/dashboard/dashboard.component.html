@@ -28,10 +28,10 @@
         <!-- Groups Section -->
         <div class="card mb-3">
           <h3 class="card-header">Groups</h3>
-          <div class="card-body" style="height: 500px; overflow-y:hidden">
+          <div class="card-body" style="height: 300px; overflow-y:hidden">
 
             <!-- New Group Form -->
-            <div class="form-inline" >
+            <div class="form-inline" id="createGroup">
               <form (submit)="createGroup($event)">
                 <input class="form-control" name="newGroupName" style="width:calc(100% - 100px)" placeholder="New Group" type="text" [(ngModel)]="newGroupName">
                 <button class="btn btn-primary" style="width:100px">Create</button>
@@ -40,9 +40,9 @@
 
             <!-- List of Groups -->
             <div class="row" *ngFor="let group of groups">
-                <button type="button" *ngIf="group.role == 0" (click)="openGroup(group.name)" class="btn btn-outline-success col-lg-12">{{ group.name }}</button>
-                <button type="button" *ngIf="group.role >= 1" (click)="openGroup(group.name)" class="btn btn-outline-primary col-lg-10">{{ group.name }}</button>
-                <button type="button" class="btn btn-danger col-lg-2" (click)="deleteGroup(group.name)" *ngIf="group.role >= 1">-</button>
+                <button type="button" *ngIf="group.role == 0" (click)="openGroup(group.name)" class="btn btn-outline-success col-lg-10">{{ group.name }}</button>
+                <button type="button" *ngIf="group.role >= 1" (click)="openGroup(group.name)" class="btn btn-outline-primary col-lg-8">{{ group.name }}</button>
+                <button type="button" class="btn btn-danger col-lg-2" (click)="deleteGroup(group.name)" *ngIf="group.role >= 1"><strong>Delete Group</strong></button>
             </div>
           </div>
         </div>        

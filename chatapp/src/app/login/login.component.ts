@@ -37,10 +37,10 @@ export class LoginComponent implements OnInit {
       if(data != false){
         let temp = JSON.stringify(data);
         sessionStorage.setItem('user', temp);
+        alert('Successfully logged in');
         this.router.navigate(['/dashboard']);
       } else {
-        let message = "Invalid login details"
-        document.getElementById('error').innerHTML = '<div class="alert alert=dismissible alert-danger"><button type="button class="close" data-dismiss="alert">&times;</button><strong>Oh Snap!</strong> ' +message + '</div>';
+        alert('Username and password were incorrect, please try again');
       }
     },
     error => {

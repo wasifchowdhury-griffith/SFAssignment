@@ -42,15 +42,21 @@ app.post('/api/login', function(req,res){
         if (match !== false){
             groups.data = data;
             match.groups = groups.getGroups(username, match.permissions);
+        } else {
+            console.error(err);
         }
-        console.log(match.groups[0].channels[0])
-        res.send(match);
+        if (match.groups == 'undefined' || match.groups == null){
+            console.error(err)
+        } else {
+            console.log(match.groups[0].channels[0])
+            res.send(match);
+        }
     });
 });
 
 app.post('/api/groups', function(req,res){
     fs.readFile(dataFile, dataFormat, function(err, data){
-        data.JSON.parse(data);
+        data = JSON.parse(data);
         let username = req.body.username;
         login.data = data;
         let match = login.findUser(username);
@@ -82,7 +88,7 @@ app.delete('/api/group/delete/:groupname', function(req,res){
 
 app.post('/api/group/create', function(req, res){
     let groupName = req.body.newGroupName
-    if(groupname == '' || groupName == 'undefined' || groupName == null){
+    if(groupName == '' || groupName == 'undefined' || groupName == null){
         res.send(false);
     } else {
         fs.readFile(dataFile, dataFormat, function(err, data){
@@ -94,15 +100,14 @@ app.post('/api/group/create', function(req, res){
                 'admins': [],
                 'members': []
             }
-            g.push(newGroup);
-            readData.groups.groups = g;
+            g.push(newGroup)
+            readData.groups = g;
             let json = JSON.stringify(readData);
 
             fs.writeFile(dataFile, json, dataFormat, function(err, data){
                 res.send(true);
                 console.log("Created new group called: " + req.body.newGroupName);
             });
-            fs.end();
         });
     }
 })
