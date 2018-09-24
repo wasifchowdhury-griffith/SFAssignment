@@ -75,7 +75,7 @@
    line-height: 1.5;
    color: #EBEBEB;
    text-align: left;
-   background-color: #2B3E50;
+   background-color: #C4DFE6;
  }
  
  [tabindex="-1"]:focus {
@@ -2523,8 +2523,8 @@
  
  .btn-primary {
    color: #fff;
-   background-color: #DF691A;
-   border-color: #DF691A;
+   background-color: #003B46;
+   border-color: #C4DFE6;
  }
  
  .btn-primary:hover {
@@ -2703,8 +2703,8 @@
  
  .btn-danger {
    color: #fff;
-   background-color: #d9534f;
-   border-color: #d9534f;
+   background-color: #003B46;
+   border-color: #C4DFE6;
  }
  
  .btn-danger:hover {
@@ -2810,16 +2810,16 @@
  }
  
  .btn-outline-primary {
-   color: #DF691A;
+   color: #C4DFE6;
    background-color: transparent;
    background-image: none;
-   border-color: #DF691A;
+   border-color: #003B46;
  }
  
  .btn-outline-primary:hover {
-   color: #fff;
-   background-color: #DF691A;
-   border-color: #DF691A;
+   color: #C4DFE6;
+   background-color: #003B46;
+   border-color: #66A5AD;
  }
  
  .btn-outline-primary:focus, .btn-outline-primary.focus {
@@ -4155,7 +4155,7 @@
  }
  
  .nav-tabs {
-   border-bottom: 1px solid #4E5D6C;
+   border-bottom: 1px solid #07575B;
  }
  
  .nav-tabs .nav-item {
@@ -4686,7 +4686,7 @@
            flex-direction: column;
    min-width: 0;
    word-wrap: break-word;
-   background-color: #4E5D6C;
+   background-color: #66A5AD;
    background-clip: border-box;
    border: 1px solid rgba(0, 0, 0, 0.125);
    border-radius: 0;
@@ -4738,7 +4738,7 @@
  .card-header {
    padding: 0.75rem 1.25rem;
    margin-bottom: 0;
-   background-color: rgba(255, 255, 255, 0.075);
+   background-color: #07575B;
    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
  }
  
@@ -6426,7 +6426,7 @@
  }
  
  .bg-primary {
-   background-color: #DF691A !important;
+   background-color: #003B46 !important;
  }
  
  a.bg-primary:hover, a.bg-primary:focus,
@@ -6554,7 +6554,7 @@
  }
  
  .border-primary {
-   border-color: #DF691A !important;
+   border-color: #003B46 !important;
  }
  
  .border-secondary {
@@ -9503,7 +9503,7 @@
  }
  
  .btn-primary {
-   background-color: #DF691A;
+   background-color: #003B46;
  }
  
  .btn-secondary {
@@ -9523,7 +9523,7 @@
  }
  
  .btn-danger {
-   background-color: #d9534f;
+   background-color: #003B46;
  }
  
  .btn-light {

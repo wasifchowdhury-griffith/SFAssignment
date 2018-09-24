@@ -7,15 +7,18 @@
 }
 
 #homepage:hover {
-    background-color: #BCBABE;
+    color: #66A5AD;
 }
 
 #welcome, #welcome-msg, #div, a {
-    background-color: #A1D6E2;
-    color: #F1F1F2;
+    color: #003B46;
     text-align: center;
 }
 
+h1:hover, #welcome-msg:hover {
+    color: #66A5AD;
+}
+
 a:hover {
-    color: #1995AD;
+    color: #66A5AD;
 }
