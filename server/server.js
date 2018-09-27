@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const dataFile = './data.json';
 const dataFormat = 'utf8';
+const MongoClient = require('mongodb').MongoClient;
+const url = 'mongodb://localhost:27017';
 
 //CORS
 const cors = require('cors');
@@ -31,28 +33,56 @@ app.get('/home', function(req,res) {
 const login = require('./login.js')();
 const groups = require('./group.js')();
 
-app.post('/api/login', function(req,res){
-    fs.readFile(dataFile, dataFormat, function(err, data){
-        console.log(data);
-        data = JSON.parse(data);
-        let username = req.body.username;
-        login.data = data;
-        let match = login.findUser(username);
+//connect to mongo
+MongoClient.connect(url, function(err, client){
+    if(err){
+        throw err;
+    }
+    console.log('MongoDB connected');
 
-        if (match !== false){
-            groups.data = data;
-            match.groups = groups.getGroups(username, match.permissions);
-        } else {
-            console.error(err);
-        }
-        if (match.groups == 'undefined' || match.groups == null){
-            console.error(err)
-        } else {
-            console.log(match.groups[0].channels[0])
-            res.send(match);
-        }
+    app.post('/api/login', function(req,res){
+        let body = req.body;
+        let reader = require('./read.js')(MongoClient, url, body);
+        reader.getLogin(res);
+        // const dbName = 'chatapp';
+        // const db = client.db(dbName);
+        // const collection = db.collection('users');
+        // collection.findOne({username:'wchow1'}, function(err,res){
+        //     if (err) throw err;
+        //     console.log(res);
+        // });
     });
 });
+
+// app.post('/api/login', function(req,res){
+//     const dbName = 'chatapp';
+//     const db = client.db(dbName);
+//     const collection = db.collection('users');
+//     collection.findOne({username:'wchow1'}, function(err,res){
+//         if (err) throw err;
+//         result(res);
+//     });
+//     fs.readFile(dataFile, dataFormat, function(err, data){
+//         console.log(data);
+//         data = JSON.parse(data);
+//         let username = req.body.username;
+//         login.data = data;
+//         let match = login.findUser(username);
+
+//         if (match !== false){
+//             groups.data = data;
+//             match.groups = groups.getGroups(username, match.permissions);
+//         } else {
+//             console.error(err);
+//         }
+//         if (match.groups == 'undefined' || match.groups == null){
+//             console.error(err)
+//         } else {
+//             console.log(match.groups[0].channels[0])
+//             res.send(match);
+//         }
+//     });
+// });
 
 app.post('/api/groups', function(req,res){
     fs.readFile(dataFile, dataFormat, function(err, data){

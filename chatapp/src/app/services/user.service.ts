@@ -16,6 +16,7 @@ export class UserService {
 
   login(data){
     let body = JSON.stringify(data);
+    console.log(data);
     return this.http.post(this.api + 'login', body, httpOptions);
   }
 
@@ -27,4 +28,9 @@ export class UserService {
   delete(username){
     return this.http.delete(this.api + 'user/delete/' + username);
   }
+
+  getData(){
+    return this.http.get(this.api + 'getData');
+  }
+
 }
