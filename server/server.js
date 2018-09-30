@@ -8,7 +8,7 @@ const fs = require('fs');
 const dataFile = './data.json';
 const dataFormat = 'utf8';
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017';
+const dbURL = 'mongodb://localhost:27017';
 
 //CORS
 const cors = require('cors');
@@ -34,7 +34,7 @@ const login = require('./login.js')();
 const groups = require('./group.js')();
 
 //connect to mongo
-MongoClient.connect(url, function(err, client){
+MongoClient.connect(dbURL, function(err, client){
     if(err){
         throw err;
     }
@@ -42,62 +42,27 @@ MongoClient.connect(url, function(err, client){
 
     app.post('/api/login', function(req,res){
         let body = req.body;
-        let reader = require('./read.js')(MongoClient, url, body);
+        let reader = require('./read.js')(MongoClient, dbURL, body);
         reader.getLogin(res);
-        // const dbName = 'chatapp';
-        // const db = client.db(dbName);
-        // const collection = db.collection('users');
-        // collection.findOne({username:'wchow1'}, function(err,res){
-        //     if (err) throw err;
-        //     console.log(res);
-        // });
     });
-});
 
-// app.post('/api/login', function(req,res){
-//     const dbName = 'chatapp';
-//     const db = client.db(dbName);
-//     const collection = db.collection('users');
-//     collection.findOne({username:'wchow1'}, function(err,res){
-//         if (err) throw err;
-//         result(res);
-//     });
-//     fs.readFile(dataFile, dataFormat, function(err, data){
-//         console.log(data);
-//         data = JSON.parse(data);
-//         let username = req.body.username;
-//         login.data = data;
-//         let match = login.findUser(username);
+    app.get('/api/groups', function(req,res){
+        let reader = require('./mongoGroup.js')(MongoClient, dbURL, req);
+        reader.getMGroups(res);
+    });
 
-//         if (match !== false){
-//             groups.data = data;
-//             match.groups = groups.getGroups(username, match.permissions);
-//         } else {
-//             console.error(err);
-//         }
-//         if (match.groups == 'undefined' || match.groups == null){
-//             console.error(err)
-//         } else {
-//             console.log(match.groups[0].channels[0])
-//             res.send(match);
-//         }
-//     });
-// });
-
-app.post('/api/groups', function(req,res){
-    fs.readFile(dataFile, dataFormat, function(err, data){
-        data = JSON.parse(data);
-        let username = req.body.username;
-        login.data = data;
-        let match = login.findUser(username);
-
-        if (match !== false){
-            groups.data = data;
-            match.groups = groups.getGroups(username, match.permissions);
+    app.post('/api/groups/create', function(req,res){
+        let groupName = req.body.newGroupName;
+        console.log(groupName);
+        let writer = require('./newMGroup.js')(MongoClient, dbURL);
+        let newGroup = {
+            "name": req.body.name,
+            "admins": req.body.admins
         }
-        res.send(match);
-    });
+        writer.createGroup(newGroup, res);
+    })
 });
+
 
 app.delete('/api/group/delete/:groupname', function(req,res){
     let groupName = req.params.groupname;

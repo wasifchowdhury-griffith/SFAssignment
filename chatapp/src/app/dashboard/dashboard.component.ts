@@ -14,6 +14,8 @@ export class DashboardComponent implements OnInit {
   public groups = [];
   public channels =[];
   public newGroupName:String;
+  public cUser:String;
+  public myGroups = [];
 
   constructor(private router: Router, 
     private groupService: GroupService
@@ -25,22 +27,20 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['/login']);
     } else {
       let user = JSON.parse(sessionStorage.getItem('user'));
-      this.user = user;
-      console.log(this.user);
-      this.groups = user.groups;
-      if (this.groups.length > 0){
-        this.openGroup(this.groups[0].name);
-        if (this.groups[0].channels > 0){
-          this.channelChangedHandler(this.groups[0].channels[0].name);
-        }
-      }
+      this.user = user[0];
+      this.cUser = this.user.username;
+      this.getGroups();
+      console.log(this.user.permissions);
     }
   }
 
   createGroup(event){
     event.preventDefault();
-    let data = {'newGroupName' : this.newGroupName};
-    this.groupService.createGroup(data).subscribe(
+    let nGroup = {
+      name: this.newGroupName,
+      admins: {name: "super"}
+    }
+    this.groupService.createGroup(nGroup).subscribe(
       data => {
         console.log(data);
         this.getGroups();
@@ -62,14 +62,16 @@ export class DashboardComponent implements OnInit {
   }
 
   getGroups(){
-    let data = {
-      'username' : JSON.parse(sessionStorage.getItem('user')).username
-    }
-    this.groupService.getGroups(data).subscribe(
+    this.groupService.getGroups(this.cUser).subscribe(
       d => {
         console.log('getGroups()');
         console.log(d);
         this.groups = d['groups'];
+        this.myGroups.push(d);
+        this.myGroups = this.myGroups[0];
+        console.log(this.myGroups);
+        this.myGroups = this.groupService.sortGroups(this.myGroups, this.cUser);
+        console.log(this.myGroups);
       },
       error => {
         console.error(error);
@@ -84,9 +86,9 @@ export class DashboardComponent implements OnInit {
 
   openGroup(name){
     console.log(name);
-    for (let i=0; i<this.groups.length; i++){
-      if(this.groups[i].name == name){
-        this.selectedGroup = this.groups[i];
+    for (let i=0; i<this.myGroups.length; i++){
+      if(this.myGroups[i].name == name){
+        this.selectedGroup = this.myGroups[i];
       }
     }
     this.channels = this.selectedGroup.channels;

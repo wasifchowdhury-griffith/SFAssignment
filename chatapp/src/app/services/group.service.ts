@@ -15,6 +15,7 @@ export class GroupService {
   constructor(private http: HttpClient) {}
 
   createGroup(data){
+    console.log(data);
     let body = JSON.stringify(data);
     return this.http.post(this.api + 'group/create', body, httpOptions);
   }
@@ -23,9 +24,23 @@ export class GroupService {
     return this.http.delete(this.api + 'group/delete/' + groupName);
   }
 
-  getGroups(data){
-    let body = JSON.stringify(data);
-    return this.http.post(this.api + 'groups', body, httpOptions);
+  
+  getGroups(username){
+    // let body = JSON.stringify(data);
+    // console.log(data);
+    console.log("getgroups function working " + username);
+    console.log(this.api + 'groups');
+    return this.http.get(this.api + 'groups');
+  }
+
+  sortGroups(array, username){
+    let resArray = [];
+    for (let i=0; i<array.length; i++){
+      if ((array[i].members.name.includes(username)) || (array[i].admins.name.includes(username))){
+        resArray.push(array[i]);
+      }
+    }
+    return resArray;
   }
 }
 
