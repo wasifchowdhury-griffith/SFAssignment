@@ -1,4 +1,4 @@
 <div class="btn-group-vertical" style="width: 100%">
-  <p *ngIf="channels.length == 0" style="width: 100%; text-align:center">No Channels Available</p>
-  <button *ngFor="let channel of channels" (click)="changeChannel(channel.name)" type="button" class="btn btn-outline-primary">{{ channel.name }}</button>
+  <p *ngIf="this.myChannels.length == 0" style="width: 100%; text-align:center">No Channels Available</p>
+  <button *ngFor="let myChannel of myChannels" (click)="changeChannel(myChannel.name)" type="button" class="btn btn-outline-primary">{{ myChannel.name }}</button>
 </div>

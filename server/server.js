@@ -9,6 +9,9 @@ const dataFile = './data.json';
 const dataFormat = 'utf8';
 const MongoClient = require('mongodb').MongoClient;
 const dbURL = 'mongodb://localhost:27017';
+require('./routes.js')(app, path);
+require('./socket.js')(app, io);
+require('./listen.js')(http);
 
 //CORS
 const cors = require('cors');
@@ -61,52 +64,9 @@ MongoClient.connect(dbURL, function(err, client){
         }
         writer.createGroup(newGroup, res);
     })
+
+    app.get('/api/channels', function(req,res){
+        let reader = require('./channelReader.js')(MongoClient, dbURL);
+        reader.getChannels(res);
+    })
 });
-
-
-app.delete('/api/group/delete/:groupname', function(req,res){
-    let groupName = req.params.groupname;
-
-    fs.readFile(dataFile, dataFormat, function(err,data){
-        let readData = JSON.parse(data);
-        groups.data = readData.groups;
-        readData.groups = groups.deleteGroup(groupName);
-        console.log(readData);
-        let json = JSON.stringify(readData);
-
-        fs.writeFile(dataFile, json, dataFormat, function(err, d){
-            res.send(true);
-            console.log("Deleted group was: " + groupName);
-        });
-    });
-});
-
-app.post('/api/group/create', function(req, res){
-    let groupName = req.body.newGroupName
-    if(groupName == '' || groupName == 'undefined' || groupName == null){
-        res.send(false);
-    } else {
-        fs.readFile(dataFile, dataFormat, function(err, data){
-            let readData = JSON.parse(data);
-            let g = readData.groups;
-
-            let newGroup = {
-                'name': req.body.newGroupName,
-                'admins': [],
-                'members': []
-            }
-            g.push(newGroup)
-            readData.groups = g;
-            let json = JSON.stringify(readData);
-
-            fs.writeFile(dataFile, json, dataFormat, function(err, data){
-                res.send(true);
-                console.log("Created new group called: " + req.body.newGroupName);
-            });
-        });
-    }
-})
-
-require('./routes.js')(app, path);
-require('./socket.js')(app, io);
-require('./listen.js')(http);

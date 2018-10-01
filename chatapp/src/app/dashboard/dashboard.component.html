@@ -40,9 +40,9 @@
             
             <!-- List of Groups -->
             <div class="form-inline" *ngFor="let mygroup of myGroups" style="margin:2px">
-                <button type="button" *ngIf="this.user.permissions == 0" (click)="openGroup(group.name)" class="btn btn-outline-success col-lg-8">{{ mygroup.name }}</button>
-                <button type="button" *ngIf="this.user.permissions >= 1" (click)="openGroup(group.name)" class="btn btn-outline-primary col-lg-6">{{ mygroup.name }}</button>
-                <button type="button" class="btn btn-danger col-lg-4" (click)="deleteGroup(group.name)" *ngIf="this.user.permissions >= 1"><strong>Delete Group</strong></button>
+                <button type="button" *ngIf="this.user.permissions == 0" (click)="openGroup(mygroup.name)" class="btn btn-outline-success col-lg-8">{{ mygroup.name }}</button>
+                <button type="button" *ngIf="this.user.permissions >= 1" (click)="openGroup(mygroup.name)" class="btn btn-outline-primary col-lg-6">{{ mygroup.name }}</button>
+                <button type="button" class="btn btn-danger col-lg-4" (click)="deleteGroup(mygroup.name)" *ngIf="this.user.permissions >= 1"><strong>Delete Group</strong></button>
             </div>
           </div>
         </div>        
@@ -57,13 +57,13 @@
             <!-- New Channel Form -->
             <div class="form-inline" >
               <form (submit)="createChannel($event)">
-              <input class="form-control" name="newGroupName" style="width:calc(100% - 100px)" placeholder="New Channel" type="text" [(ngModel)]="newGroupName">
+              <input class="form-control" name="newChannelName" style="width:calc(100% - 100px)" placeholder="New Channel" type="text" [(ngModel)]="newGroupName">
               <button class="btn btn-primary" style="width:100px">Create</button>
               </form>
             </div>
 
             <!-- List of Channels -->
-            <app-channels [channels]=channels [group]=selectedGroup (channelChanged)="channelChangedHandler($event)"></app-channels>
+            <app-channels [myChannels]=myChannels [group]=selectedGroup (channelChanged)="channelChangedHandler($event)"></app-channels>
           </div>
         </div> 
       </div>
@@ -72,16 +72,6 @@
       <!-- Chat Column -->
       <div class="col-lg-8" style="padding:0px">
         <app-chat [channel]=selectedChannel></app-chat>
-      </div>
-
-      <!-- Members Column -->
-      <div class="col-lg-4" style="padding:0px; border: solid black 2px">
-        <h3 style="text-align:center; width:100%">Users in this channel</h3>
-        <ng-container *ngIf="selectedChannel != null" >
-            <p style="text-align:center" *ngFor="let member of selectedChannel.members">
-              {{ member }}
-            </p>
-        </ng-container>
       </div>
     </div>
 </div>

@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./channels.component.css']
 })
 export class ChannelsComponent implements OnInit {
-  @Input() channels;
+  @Input() myChannels;
   @Input() group;
   @Output() channelChanged: EventEmitter<string> = new EventEmitter();
 

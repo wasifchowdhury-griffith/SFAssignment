@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GroupService } from '../services/group.service';
+import { ChannelService } from '../services/channel.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,12 +14,14 @@ export class DashboardComponent implements OnInit {
   public selectedChannel;
   public groups = [];
   public channels =[];
+  public myChannels =[];
   public newGroupName:String;
   public cUser:String;
   public myGroups = [];
 
   constructor(private router: Router, 
-    private groupService: GroupService
+    private groupService: GroupService,
+    private channelService: ChannelService
   ) { }
 
 
@@ -66,7 +69,6 @@ export class DashboardComponent implements OnInit {
       d => {
         console.log('getGroups()');
         console.log(d);
-        this.groups = d['groups'];
         this.myGroups.push(d);
         this.myGroups = this.myGroups[0];
         console.log(this.myGroups);
@@ -85,29 +87,53 @@ export class DashboardComponent implements OnInit {
   }
 
   openGroup(name){
+    console.log(this.myGroups);
     console.log(name);
     for (let i=0; i<this.myGroups.length; i++){
       if(this.myGroups[i].name == name){
         this.selectedGroup = this.myGroups[i];
+        this.getChannels(this.selectedGroup.name)
       }
     }
-    this.channels = this.selectedGroup.channels;
+  }
+
+  getChannels(name){
+    this.channelService.getChannels(name).subscribe(
+      d => {
+        console.log('getChannels()');
+        console.log(d);
+        this.myChannels.push(d);
+        this.myChannels = this.myChannels;
+        this.myChannels = this.sortChannels(this.myChannels[0], this.selectedGroup.name);
+        console.log(this.myChannels);
+        console.log(this.myChannels.length);
+      },
+      error => {
+        console.error(error);
+      }
+    )
+  }
+
+  sortChannels(channels, groupN){
+    let channelArray = [];
+    for (let i=0; i<channels.length;i++){
+      if (channels[i].group == groupN){
+        channelArray.push(channels[i]);
+      }
+    }
+    return channelArray;
   }
 
   channelChangedHandler(name){
+    console.log(name);
     let found:boolean = false;
-    for (let i=0; i<this.channels.length; i++){
-      if(this.channels[i].name == name){
-        this.selectedChannel = this.channels[i];
+    for (let i=0; i<this.myChannels.length; i++){
+      if(this.myChannels[i].name == name){
+        this.selectedChannel = this.myChannels[i];
         found = true;
+        console.log(this.selectedChannel);
       }
     }
     return found;
   }
-
-  getChannels(groupName){
-    let channels = [];
-    return channels;
-  }
-
 }
