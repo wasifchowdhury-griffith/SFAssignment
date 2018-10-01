@@ -40,7 +40,23 @@ The channels array contained objects with channel data which was the channel nam
 the group it was under, and a members array.
 
 ### Rest API
-Rest APIs were not used for this.
+Rest API was used for the Angular front end communication with the Node.js server. \
+#### Server
+app.post('/api/login') was used to request user credetinals and checked the mongoDB server \
+to find a match.
+app.get('/api/groups') was used to retrieve the groups \
+app.get('/api/channels') was used to retrieve the channels \
+app.post('/api/groups/create') was used to create a new group 
+
+#### Client
+- Within the user service, there was a login function that uses `post` to send login details \
+   *Returns true or false for login matching*
+- Within the group service, there was a get groups function that uses `get` to retrieve the groups \
+   *Returns array of groups*
+- Within the channel serivce, there was a get channels function that uses `get` to retrieve the channels 
+   *Returns array of channels*
+
+### Routes
 Routes in the project were:
 - /home\
     *Route user arrives on default*
