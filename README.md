@@ -26,6 +26,8 @@ methods that can be called to fetch data within them or set data.
 The data structures used were arrays which held the user and \
 group data in their respective array.
 
+![Img1](https://github.com/wchow3/SFAssignment/blob/master/images/img1.PNG)
+
 ### Rest API
 Rest APIs were not used for this.
 Routes in the project were:
