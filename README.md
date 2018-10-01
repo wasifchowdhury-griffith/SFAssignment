@@ -21,15 +21,23 @@ The approach for version control was to use github and upload commits after majo
 Each commit has a comment for changes
 
 ### Data Structures
-The Users and Groups are represented as services which have \
+The Users/ Groups and Channels are represented as services which have \
 methods that can be called to fetch data within them or set data.
-The data structures used were arrays which held the user and \
-group data in their respective array.
+The data structures used were object arrays which held the user, \
+group and channel data in their respective array as shown below. \
 
-![Img1](https://github.com/wchow3/SFAssignment/blob/master/images/img1.PNG)
-![Img2](https://github.com/wchow3/SFAssignment/blob/master/images/img2.PNG)
-![Img3](https://github.com/wchow3/SFAssignment/blob/master/images/img3.PNG)
-![Img4](https://github.com/wchow3/SFAssignment/blob/master/images/img4.PNG)
+![Img1](https://github.com/wchow3/SFAssignment/blob/master/images/img1.PNG) \
+
+![Img2](https://github.com/wchow3/SFAssignment/blob/master/images/img2.PNG) \
+The users array contained objects with user data which was the username and their permissions. \
+
+![Img3](https://github.com/wchow3/SFAssignment/blob/master/images/img3.PNG) \
+The groups array contained objects with group data which was the group name, \
+an admin array, and members array. \
+
+![Img4](https://github.com/wchow3/SFAssignment/blob/master/images/img4.PNG) \
+The channels array contained objects with channel data which was the channel name, \
+the group it was under, and a members array.
 
 ### Rest API
 Rest APIs were not used for this.
