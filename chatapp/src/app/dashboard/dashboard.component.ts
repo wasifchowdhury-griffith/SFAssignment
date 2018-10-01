@@ -87,26 +87,22 @@ export class DashboardComponent implements OnInit {
   }
 
   openGroup(name){
-    console.log(this.myGroups);
-    console.log(name);
     for (let i=0; i<this.myGroups.length; i++){
       if(this.myGroups[i].name == name){
         this.selectedGroup = this.myGroups[i];
         this.getChannels(this.selectedGroup.name)
       }
     }
+    this.groupService.setCurrentGroup(this.selectedGroup.name);
   }
 
   getChannels(name){
     this.channelService.getChannels(name).subscribe(
       d => {
         console.log('getChannels()');
-        console.log(d);
         this.myChannels.push(d);
         this.myChannels = this.myChannels;
         this.myChannels = this.sortChannels(this.myChannels[0], this.selectedGroup.name);
-        console.log(this.myChannels);
-        console.log(this.myChannels.length);
       },
       error => {
         console.error(error);

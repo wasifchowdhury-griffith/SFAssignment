@@ -16,7 +16,12 @@ export class ChannelService {
 
   getChannels(groupName){
     console.log("get channels function working " + groupName);
+    this.getCurrentGroup(groupName);
     return this.http.get(this.api + 'channels');
   }
-  
+
+  getCurrentGroup(groupName){
+    return groupName;
+  }
+
 }

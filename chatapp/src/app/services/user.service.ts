@@ -11,12 +11,15 @@ const httpOptions = {
 })
 export class UserService {
   private api:string = 'http://localhost:3000/api/';
+  private currentUser: String;
 
   constructor(private http:HttpClient) {}
 
   login(data){
     let body = JSON.stringify(data);
     console.log(data);
+    this.currentUser = data.username;
+    console.log(this.currentUser);
     return this.http.post(this.api + 'login', body, httpOptions);
   }
 
@@ -29,8 +32,8 @@ export class UserService {
     return this.http.delete(this.api + 'user/delete/' + username);
   }
 
-  getData(){
-    return this.http.get(this.api + 'getData');
+  getCurrentUser(){
+    return this.currentUser;
   }
 
 }

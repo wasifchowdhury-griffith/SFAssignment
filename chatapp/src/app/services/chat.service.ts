@@ -24,7 +24,7 @@ export class ChatService {
   // new user observable
   newUserJoined(){
     let observable = new Observable<{user: String, message:String}>(observer=>{
-      this.socket.on('new user joined', (data)=>{
+      this.socket.on('join', (data)=>{
         observer.next(data);
       });
       return () => {this.socket.disconnect}
@@ -50,6 +50,7 @@ export class ChatService {
 
   //send message to socket
   sendMessage(data){
+    console.log(data);
     this.socket.emit('message', data);
   }
 

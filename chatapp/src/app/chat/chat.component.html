@@ -3,9 +3,9 @@
   <h3 *ngIf="channel == null" class="card-header" style="text-align:center">Chat</h3>
   <div class="card-body" style="height: 500px; overflow-y:scroll">
     <div id="chat_history">
-      <div *ngFor="let message of messages">
+      <div *ngFor="let item of messageArray">
         <p class="card-text">
-        {{item.user}} : {{item.message}} {{message.text}}
+        {{item.user}} : {{item.message}}
         </p>
       </div>
     </div>
@@ -13,5 +13,7 @@
   <div class="card-footer text-muted">
     <input [(ngModel)]="messageText" type="text" placeholder="Enter message" id="message" class="form-control">
     <button (click)="sendMessage()" class="btn btn-primary">Send</button>
+    <br/>
+    <button (click)="leave()" class="btn btn-primary">Leave Group</button>
   </div>
 </div>

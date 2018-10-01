@@ -11,6 +11,7 @@ const httpOptions = {
 })
 export class GroupService {
   private api:string = 'http://localhost:3000/api/';
+  private groupName: String;
 
   constructor(private http: HttpClient) {}
 
@@ -41,6 +42,15 @@ export class GroupService {
       }
     }
     return resArray;
+  }
+
+  setCurrentGroup(groupName){
+    this.groupName = groupName;
+    console.log(this.groupName);
+  }
+
+  getCurrentGroup(){
+    return this.groupName;
   }
 }
 
