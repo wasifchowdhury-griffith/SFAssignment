@@ -72,7 +72,6 @@ Upon successfully logging in, the user will arrive at the dashboard \
 which contains the `channels` component and the `chat` component. \
 This fetches all the groups from the database if the user is an admin or member of the group. \
 New groups can be created through the `create new group button` \
-which takes the user to `/create-group`
 
 A user may click on a group to which displays the channels of that group \
 
