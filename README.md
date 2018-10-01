@@ -40,7 +40,7 @@ The channels array contained objects with channel data which was the channel nam
 the group it was under, and a members array.
 
 ### Rest API
-Rest API was used for the Angular front end communication with the Node.js server. \
+Rest API was used for the Angular front end communication with the Node.js server. 
 #### Server
 app.post('/api/login') was used to request user credetinals and checked the mongoDB server \
 to find a match.
@@ -76,7 +76,7 @@ There were multiple components created in this project
 - chat 
 
 Upon loading `/` users will be directed to `/home` which is a \
-simple splash screen with a login link which will navigate to `/login`.\
+simple splash screen with a login link which will navigate to `/login`.
 
 `/login` is a simple form that asks users to login with `email` and `password`.\
 There are two buttons `enter chat` and `register`.\
