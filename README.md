@@ -27,6 +27,9 @@ The data structures used were arrays which held the user and \
 group data in their respective array.
 
 ![Img1](https://github.com/wchow3/SFAssignment/blob/master/images/img1.PNG)
+![Img2](https://github.com/wchow3/SFAssignment/blob/master/images/img1.PNG)
+![Img3](https://github.com/wchow3/SFAssignment/blob/master/images/img1.PNG)
+![Img4](https://github.com/wchow3/SFAssignment/blob/master/images/img1.PNG)
 
 ### Rest API
 Rest APIs were not used for this.
