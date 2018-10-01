@@ -48,61 +48,44 @@ Routes in the project were:
     *Route user uses to login to chat*
 - /dashboard\
     *Route user arrives at once logged in.*\
-    *User is able to create user or group from here*
-- /create-user\
-    *Route to a form that creates a user*
-- /create-group\
-    *Route to a form that creates a group*
-- /nchat/(id)\
-    *Route to a chat room with specified id*
+    *User is able to create users/groups/channels from here*
 
 ### Angular Architecture
 #### Components
 There were multiple components created in this project
-- bottom navbar
-- create-group
-- create-user
+- channels
 - dashboard
-- documentation
-- group
 - home
 - login
-- chat\
+- chat 
+
 Upon loading `/` users will be directed to `/home` which is a \
 simple splash screen with a login link which will navigate to `/login`.\
-There is also the bottom navbar component which sits at the footer of the site. \
-There is a link to `/documentation` route in this footer.
 
 `/login` is a simple form that asks users to login with `email` and `password`.\
 There are two buttons `enter chat` and `register`.\
 The enter chat button checks if the user exists and navigates to \
 `/dashboard` if correct credentials are found.\
 There is also a register button for users who wish to create a new account\ 
-that navigates to `/create-user`
 
 Upon successfully logging in, the user will arrive at the dashboard \
-which contains the `group component`. \
-This fetches all the groups on the localstorage. \
+which contains the `channels` component and the `chat` component. \
+This fetches all the groups from the database if the user is an admin or member of the group. \
 New groups can be created through the `create new group button` \
 which takes the user to `/create-group`
 
-A user may click on a group to be navigated to `/chat/(id)` \
-where the id is the group clicked.
+A user may click on a group to which displays the channels of that group \
 
-A user may also logout which navigates back to `/login`
+A user may also logout which navigates back to `/login` clearing the user from the session storage.
 
 #### Services
 There were multiple services created to allow communication between client and server.
 - `chat.service`
 - `group.service`
 - `socket.service`
+- `channel.service`
 - `user.service`\
 Each service had functions allowing to retrieve and set objects
-
-#### Models
-There were two models created in the classes folder, `User` and `Group`\
-`User` model class contains an object which has `user id, username and email`\
-`Group` model class contains an object which has  `group id and group name`\
 
 ### Features
 - users can login
