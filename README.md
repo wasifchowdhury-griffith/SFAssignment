@@ -8,7 +8,8 @@ The assignment/git repo contains two folders, [chatapp](https://github.com/wchow
 This folder contains the angular project generated through angular cli.\
 It contains all the client side file.\
 To run the application navigate to this folder and in the terminal use the command:\
-`ng serve`
+`ng serve` or\
+use `ng build` to build the dist folder\
 
 #### server folder
 This folder contains all the files required to host the node.js server\
