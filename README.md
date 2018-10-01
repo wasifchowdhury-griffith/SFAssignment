@@ -9,7 +9,7 @@ This folder contains the angular project generated through angular cli.\
 It contains all the client side file.\
 To run the application navigate to this folder and in the terminal use the command:\
 `ng serve` or\
-use `ng build` to build the dist folder\
+use `ng build` to build the dist folder
 
 #### server folder
 This folder contains all the files required to host the node.js server\
@@ -24,16 +24,16 @@ Each commit has a comment for changes
 The Users/ Groups and Channels are represented as services which have \
 methods that can be called to fetch data within them or set data.
 The data structures used were object arrays which held the user, \
-group and channel data in their respective array as shown below. \
+group and channel data in their respective array as shown below. 
 
-![Img1](https://github.com/wchow3/SFAssignment/blob/master/images/img1.PNG) \
+![Img1](https://github.com/wchow3/SFAssignment/blob/master/images/img1.PNG) 
 
 ![Img2](https://github.com/wchow3/SFAssignment/blob/master/images/img2.PNG) \
-The users array contained objects with user data which was the username and their permissions. \
+The users array contained objects with user data which was the username and their permissions. 
 
 ![Img3](https://github.com/wchow3/SFAssignment/blob/master/images/img3.PNG) \
 The groups array contained objects with group data which was the group name, \
-an admin array, and members array. \
+an admin array, and members array. 
 
 ![Img4](https://github.com/wchow3/SFAssignment/blob/master/images/img4.PNG) \
 The channels array contained objects with channel data which was the channel name, \
