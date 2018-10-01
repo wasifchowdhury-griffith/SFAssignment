@@ -3,6 +3,7 @@ module.exports = function(MongoClient, dbURL, req){
     this.dbURL = dbURL;
     this.req = req;
 
+    //retrieves channels
     this.getChannels = function(res){
         this.MongoClient.connect(this.dbURL, function(err,db){
             if (err) throw err;

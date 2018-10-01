@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  //logs the user, saves the user data
   loginUser(event){
     event.preventDefault();
     console.log(this.username);

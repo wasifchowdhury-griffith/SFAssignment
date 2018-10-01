@@ -34,19 +34,23 @@ export class ChatComponent implements OnInit {
     this.chatService.joinGroup({user: this.user, group: this.group})
   }
 
+  //retrieves current user
   getUser(){
     this.user = this.userService.getCurrentUser();
   }
 
+  //function to leave channel
   leave(){
     this.chatService.leaveGroup({user: this.user, group: this.group});
     history.back();
   }
 
+  //retrieves current selected group
   getGroup(){
     this.group = this.groupService.getCurrentGroup();
   }
 
+  //send message function
   sendMessage(){
     this.getUser();
     this.getGroup();
@@ -54,6 +58,7 @@ export class ChatComponent implements OnInit {
     this.getMessages();
   }
 
+  //get messages function
   getMessages(){
     console.log(this.messageArray);
     return this.messageArray;

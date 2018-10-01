@@ -15,6 +15,7 @@ export class UserService {
 
   constructor(private http:HttpClient) {}
 
+  //login function 
   login(data){
     let body = JSON.stringify(data);
     console.log(data);
@@ -23,15 +24,18 @@ export class UserService {
     return this.http.post(this.api + 'login', body, httpOptions);
   }
 
+  //creates user
   create(data){
     let body = JSON.stringify(data);
     return this.http.post(this.api + 'user/create', body, httpOptions);
   }
 
+  //delete user
   delete(username){
     return this.http.delete(this.api + 'user/delete/' + username);
   }
 
+  //retrieve current logged in user
   getCurrentUser(){
     return this.currentUser;
   }

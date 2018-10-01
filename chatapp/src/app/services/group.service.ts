@@ -15,17 +15,19 @@ export class GroupService {
 
   constructor(private http: HttpClient) {}
 
+  //create group function
   createGroup(data){
     console.log(data);
     let body = JSON.stringify(data);
     return this.http.post(this.api + 'group/create', body, httpOptions);
   }
 
+  //delete specified group
   deleteGroup(groupName, username){
     return this.http.delete(this.api + 'group/delete/' + groupName);
   }
 
-  
+  //get groups  
   getGroups(username){
     // let body = JSON.stringify(data);
     // console.log(data);
@@ -34,6 +36,7 @@ export class GroupService {
     return this.http.get(this.api + 'groups');
   }
 
+  //sort groups that current user is apart of
   sortGroups(array, username){
     let resArray = [];
     for (let i=0; i<array.length; i++){
@@ -44,11 +47,13 @@ export class GroupService {
     return resArray;
   }
 
+  //set current selected group
   setCurrentGroup(groupName){
     this.groupName = groupName;
     console.log(this.groupName);
   }
 
+  //get current selected group
   getCurrentGroup(){
     return this.groupName;
   }

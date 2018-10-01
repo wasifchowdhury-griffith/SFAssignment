@@ -3,6 +3,7 @@ module.exports = function(MongoClient, dbURL, req){
     this.dbURL = dbURL;
     this.req = req;
 
+    //retrieves groups in database
     this.getMGroups = function(res){
         this.MongoClient.connect(this.dbURL, function(err,db){
             if (err) throw err;
@@ -17,12 +18,6 @@ module.exports = function(MongoClient, dbURL, req){
                 console.log("groups found");
                 res.send(jsonArray);
             })
-
-            // dbo.collection('groups').find({"members":{"name": this.req}}).toArray(function(err,result){
-            //     if (err) throw err;
-            //     res.send(result);
-            //     db.close()
-            // });
         });
     }
     return this;

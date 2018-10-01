@@ -3,6 +3,7 @@ module.exports = function(MongoClient, url, body){
     this.url = url;
     this.body = body;
 
+    //checks if username and password are in database
     this.getLogin = function(res){
         this.MongoClient.connect(this.url, function(err,db){
             if (err) throw err;

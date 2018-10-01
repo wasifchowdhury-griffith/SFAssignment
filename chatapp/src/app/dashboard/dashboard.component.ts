@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
     private channelService: ChannelService
   ) { }
 
-
+  //if user isn't logged in redirects to /login, if logged in fetches groups
   ngOnInit() {
     if (sessionStorage.getItem('user') === null){
       this.router.navigate(['/login']);
@@ -37,6 +37,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  //function to create new group
   createGroup(event){
     event.preventDefault();
     let nGroup = {
@@ -54,6 +55,7 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  //function to delete specified group
   deleteGroup(groupName){
     this.groupService.deleteGroup(groupName, this.user.username).subscribe(
       data => {
@@ -64,6 +66,7 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  //get groups the user is in
   getGroups(){
     this.groupService.getGroups(this.cUser).subscribe(
       d => {
@@ -81,11 +84,13 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  //logs the user out, clearing the session
   logout(){
     sessionStorage.clear();
     this.router.navigate(['/login']);
   }
 
+  //opens specified group and fetches channels
   openGroup(name){
     for (let i=0; i<this.myGroups.length; i++){
       if(this.myGroups[i].name == name){
@@ -96,6 +101,7 @@ export class DashboardComponent implements OnInit {
     this.groupService.setCurrentGroup(this.selectedGroup.name);
   }
 
+  //get channels function
   getChannels(name){
     this.channelService.getChannels(name).subscribe(
       d => {
@@ -110,6 +116,7 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  //sorts channels that belongs to specified group
   sortChannels(channels, groupN){
     let channelArray = [];
     for (let i=0; i<channels.length;i++){
@@ -120,6 +127,7 @@ export class DashboardComponent implements OnInit {
     return channelArray;
   }
 
+  //handler to detect when user selects another channel
   channelChangedHandler(name){
     console.log(name);
     let found:boolean = false;

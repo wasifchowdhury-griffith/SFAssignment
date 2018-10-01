@@ -15,12 +15,6 @@ export class ChatService {
     this.socket.emit('join', data);
   }
 
-  setGroup(s){
-    let gr = s;
-    console.log(gr);
-    return gr;
-  }
-
   // new user observable
   newUserJoined(){
     let observable = new Observable<{user: String, message:String}>(observer=>{

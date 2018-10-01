@@ -15,6 +15,7 @@ export class ChannelsComponent implements OnInit {
   ngOnInit() {
   }
 
+  //change channgel function
   changeChannel(name){
     this.channelChanged.emit(name);
   }
