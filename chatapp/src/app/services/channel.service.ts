@@ -26,4 +26,10 @@ export class ChannelService {
     return groupName;
   }
 
+  createChannel(data){
+    console.log(data);
+    let body = JSON.stringify(data);
+    return this.http.post(this.api + 'channel/create', body, httpOptions);
+  }
+
 }

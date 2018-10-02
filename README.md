@@ -104,8 +104,9 @@ Each service had functions allowing to retrieve and set objects
 
 ### Features
 - users can login
-- users can register new user
-- users can join groups
-- users can chat in groups
-- users can leave groups
-- ~~users can delete groups~~
+- ~~users can register new user~~
+- users can join groups, displays channels apart of that group
+- ~~users can chat in groups~~
+- users can create new groups
+- users can delete groups
+- users can create new channels

@@ -97,4 +97,18 @@ MongoClient.connect(dbURL, function(err, client){
             });
         })
     });
+
+    //rest api for post channels
+    app.post('/api/channel/create', function(req,res){
+        let cName = req.body.newChannelName;
+        console.log(cName);
+        let writer = require('./newMChannel.js')(MongoClient, dbURL);
+        console.log(req);
+        let newChannel = {
+            "name": req.body.name,
+            "group": req.body.group.name,
+            "members": req.body.members
+        }
+        writer.createChannel(newChannel, res);
+    })
 });

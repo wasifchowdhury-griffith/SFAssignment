@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   public channels =[];
   public myChannels =[];
   public newGroupName:String;
+  public newChannelName:String;
   public cUser:String;
   public myGroups = [];
 
@@ -43,7 +44,7 @@ export class DashboardComponent implements OnInit {
     let nGroup = {
       name: this.newGroupName,
       admins: {name: "super"},
-      members: {name: "wasif"}
+      members: {name: this.cUser}
     }
     console.log('creating new group: ' + this.newGroupName);
     this.groupService.createGroup(nGroup).subscribe(
@@ -144,5 +145,26 @@ export class DashboardComponent implements OnInit {
       }
     }
     return found;
+  }
+
+  //create channel function
+  createChannel(event){
+    event.preventDefault();
+    let nChannel = {
+      name: this.newChannelName,
+      group: this.selectedGroup,
+      members: this.cUser
+    }
+    console.log('creating new channel: ' + this.newChannelName + ' ' + this.selectedGroup + ' ' + this.cUser);
+    this.channelService.createChannel(nChannel).subscribe(
+      data => {
+        console.log(data);
+        this.getChannels(this.selectedGroup);
+      },
+      error => {
+        console.error(error);
+      }
+    )
+    this.getChannels(this.selectedGroup);
   }
 }
