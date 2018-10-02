@@ -42,8 +42,10 @@ export class DashboardComponent implements OnInit {
     event.preventDefault();
     let nGroup = {
       name: this.newGroupName,
-      admins: {name: "super"}
+      admins: {name: "super"},
+      members: {name: "wasif"}
     }
+    console.log('creating new group: ' + this.newGroupName);
     this.groupService.createGroup(nGroup).subscribe(
       data => {
         console.log(data);
@@ -53,17 +55,20 @@ export class DashboardComponent implements OnInit {
         console.error(error);
       }
     )
+    this.getGroups();
   }
 
   //function to delete specified group
   deleteGroup(groupName){
-    this.groupService.deleteGroup(groupName, this.user.username).subscribe(
+    this.groupService.deleteGroup(groupName).subscribe(
       data => {
         this.getGroups();
       }, error => {
         console.error(error);
       }
     )
+    console.log('deleted group: ' + groupName);
+    this.getGroups();
   }
 
   //get groups the user is in

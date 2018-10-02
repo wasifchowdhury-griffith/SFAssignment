@@ -44,6 +44,20 @@ MongoClient.connect(dbURL, function(err, client){
         reader.getLogin(res);
     });
 
+    app.post('api/user/create', function(req,res){
+        let newUser = {
+            "name": req.body.name,
+            "password": req.body.password,
+            "permissions": req.body.permission
+        }
+
+        client.collection("users").insertOne(newUser, function(err,data){
+            if (err) throw err;
+            console.log(data);
+            res.send(true);
+        })
+    })
+
     //rest api for get groups
     app.get('/api/groups', function(req,res){
         let reader = require('./mongoGroup.js')(MongoClient, dbURL, req);
@@ -51,13 +65,14 @@ MongoClient.connect(dbURL, function(err, client){
     });
 
     //rest api for post groups
-    app.post('/api/groups/create', function(req,res){
+    app.post('/api/group/create', function(req,res){
         let groupName = req.body.newGroupName;
         console.log(groupName);
         let writer = require('./newMGroup.js')(MongoClient, dbURL);
         let newGroup = {
             "name": req.body.name,
-            "admins": req.body.admins
+            "admins": req.body.admins,
+            "members": req.body.members
         }
         writer.createGroup(newGroup, res);
     })
@@ -67,4 +82,19 @@ MongoClient.connect(dbURL, function(err, client){
         let reader = require('./channelReader.js')(MongoClient, dbURL);
         reader.getChannels(res);
     })
+
+    app.delete('/api/group/delete/:name', function(req,res){
+        MongoClient.connect(dbURL, function(err, db){
+            if (err) throw err;
+            console.log('deleting group...')
+            let gName = req.params.name;
+            console.log(gName);
+            
+            let dbo = db.db('chatapp');
+            dbo.collection("groups").deleteOne({"name": gName}, function(err,data){
+                if (err) throw err;
+                res.send(true);
+            });
+        })
+    });
 });

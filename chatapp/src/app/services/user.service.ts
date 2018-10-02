@@ -25,8 +25,8 @@ export class UserService {
   }
 
   //creates user
-  create(data){
-    let body = JSON.stringify(data);
+  createUser(user){
+    let body = JSON.stringify(user);
     return this.http.post(this.api + 'user/create', body, httpOptions);
   }
 

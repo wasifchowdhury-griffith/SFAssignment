@@ -23,7 +23,8 @@ export class GroupService {
   }
 
   //delete specified group
-  deleteGroup(groupName, username){
+  deleteGroup(groupName){
+    console.log(groupName);
     return this.http.delete(this.api + 'group/delete/' + groupName);
   }
 

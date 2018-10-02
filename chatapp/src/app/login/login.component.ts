@@ -11,6 +11,7 @@ import { UserService } from '../services/user.service';
 export class LoginComponent implements OnInit {
   public username: string;
   private password: string;
+  public permission;
 
   constructor(private router:Router, 
     private form:FormsModule, 
@@ -21,6 +22,29 @@ export class LoginComponent implements OnInit {
     if(sessionStorage.getItem('user') !== null){
       this.router.navigate(['/dashboard']);
     }
+  }
+
+  //retrieves current user
+  getUsers(){
+    return this.userService.getCurrentUser();
+  }
+
+  //create new user
+  createUser(username, password, permission){
+    let user = {
+      name: username,
+      password: password,
+      permission: permission
+    }
+    this.userService.createUser(user).subscribe(
+      data => {
+        this.getUsers();
+        return true;
+      },
+      error => {
+        console.error("Error creating new user");
+      }
+    )
   }
 
   //logs the user, saves the user data
